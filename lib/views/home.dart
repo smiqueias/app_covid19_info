@@ -2,17 +2,13 @@ import 'package:app_covid19/components/card_paises_afetados.dart';
 import 'package:app_covid19/components/card_total_infectados.dart';
 import 'package:app_covid19/components/card_total_mortes.dart';
 import 'package:app_covid19/components/card_total_recuperados.dart';
-import 'package:app_covid19/controller/home_controller.dart';
-import 'package:app_covid19/models/mundo_model.dart';
-import 'package:app_covid19/repositories/covidapi_repository.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.indigo[100],
+        backgroundColor: Color.fromRGBO(58, 23, 99, 1.0),
         body: Column(
           children: [
             Expanded(
@@ -52,6 +48,28 @@ class Home extends StatelessWidget {
             ),
           ],
         ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.deepPurple[600],
+        selectedLabelStyle: TextStyle(),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+
+          ),
+
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home'
+          ),
+
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home'
+          ),
+        ],
+      ),
       );
   }
 }

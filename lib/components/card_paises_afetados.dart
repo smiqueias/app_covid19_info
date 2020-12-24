@@ -1,4 +1,4 @@
-import 'package:app_covid19/controller/home_controller.dart';
+import 'package:app_covid19/controllers/stores/home_stores.dart';
 import 'package:flutter/material.dart';
 
 class CardTotalPaisesAfetados extends StatelessWidget {
@@ -8,7 +8,7 @@ class CardTotalPaisesAfetados extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: _homeController.fetchAllCasesOfWorld(),
+        future: _homeController.fetchAllCasesOfWordl(),
         builder: (context, snapshot) {
           var totalPaisesAfetados = snapshot.data.paisesAfetados;
 
