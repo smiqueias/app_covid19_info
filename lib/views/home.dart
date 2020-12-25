@@ -1,75 +1,52 @@
-import 'package:app_covid19/components/card_paises_afetados.dart';
-import 'package:app_covid19/components/card_total_infectados.dart';
-import 'package:app_covid19/components/card_total_mortes.dart';
-import 'package:app_covid19/components/card_total_recuperados.dart';
+import 'package:app_covid19/views/components/info_mundo.dart';
+import 'package:app_covid19/controllers/stores/home_stores.dart';
+import 'package:app_covid19/views/informacoes_mundo.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+
+import 'components/bottom_navigator_bar.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
+
+  final HomeController _homeController = HomeController();
+
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color.fromRGBO(58, 23, 99, 1.0),
-        body: Column(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(50),
-                      bottomRight: Radius.circular(50)),
+    return Observer(
+      builder: (_) => Scaffold(
+          backgroundColor: Color.fromRGBO(58, 23, 99, 1.0),
+          body: _homeController.currentIndex == 0 ? InfoDadosMundo()
+          : Center(child: Text('Pais'),),
+          bottomNavigationBar: Observer(
+            builder: (_) => BottomNavigationBar(
+                unselectedItemColor: Colors.grey,
+                selectedItemColor:  Colors.white,
+                backgroundColor: Colors.deepPurple[600],
+                selectedLabelStyle: TextStyle(
+                  color: Colors.white,
                 ),
-                child: Center(
-                  child: Text(
-                    'INFORMAÇÕES COVID-19',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25),
+                items: [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.group_work),
+                    label: 'Mundo',
                   ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Expanded(
-              flex: 3,
-              child: ListView(
-                children: [
-                  CardTotalInfectados(),
-                  CardTotalRecuperados(),
-                  CardTotalPaisesAfetados(),
-                  CardTotalMortes()
+
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.flag),
+                    label: 'País',
+                  ),
                 ],
-              ),
+                elevation: 2,
+                onTap: (index) {
+                  _homeController.changePage(index);
+                },
+                currentIndex: _homeController.currentIndex
             ),
-          ],
+          )
         ),
-
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.deepPurple[600],
-        selectedLabelStyle: TextStyle(),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-
-          ),
-
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home'
-          ),
-
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home'
-          ),
-        ],
-      ),
-      );
+    );
   }
+
 }
