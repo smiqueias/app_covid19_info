@@ -8,7 +8,7 @@ class CovidRepository {
   final Dio _dio = Dio();
   String apiBaseUrl = 'https://corona.lmao.ninja';
 
-  getMundo() async {
+   getMundo() async {
 
     Response response = await _dio.get('$apiBaseUrl/v3/covid-19/all');
 

@@ -1,16 +1,16 @@
-import 'package:app_covid19/controllers/stores/home_stores.dart';
+import 'package:app_covid19/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get/get.dart';
+
 
 class BottomNavigatorBar extends StatelessWidget {
 
-  final HomeController _homeController = HomeController();
+  final HomeController _homeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
 
-    return Observer(
-      builder: (_) => BottomNavigationBar(
+    return BottomNavigationBar(
         unselectedItemColor: Colors.grey,
         selectedItemColor:  Colors.white,
         backgroundColor: Colors.deepPurple[600],
@@ -32,8 +32,8 @@ class BottomNavigatorBar extends StatelessWidget {
         onTap: (index) {
           _homeController.changePage(index);
         },
-          currentIndex: _homeController.currentIndex
-      ),
-    );
+          currentIndex: _homeController.currentIndex.value
+      );
+
   }
 }
