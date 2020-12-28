@@ -1,7 +1,7 @@
-import 'package:app_covid19/views/components/info_mundo.dart';
+import 'package:app_covid19/views/components/lista_cards_mundo.dart';
 import 'package:flutter/material.dart';
 
-class InfoDadosMundo extends StatelessWidget {
+class TelaDadosMundo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
