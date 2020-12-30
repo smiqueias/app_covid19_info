@@ -1,4 +1,4 @@
-
+import 'dart:developer';
 import 'package:app_covid19/models/mundo_model.dart';
 import 'package:app_covid19/models/pais_model.dart';
 import 'package:dio/dio.dart';
@@ -14,7 +14,7 @@ class CovidRepository {
 
     if(response.statusCode != 200) {
       throw Exception(
-        'Ocorreu um problema. Tente novamente.'
+        'Ocorreu um problema. Tente novamente. ${response.statusCode}',
       );
     } else {
       return Mundo.fromJson(response.data);
@@ -24,10 +24,10 @@ class CovidRepository {
 
   getPais({String pais}) async {
 
-    Response response = await _dio.get('$apiBaseUrl/countries/$pais');
+    Response response = await _dio.get('https://corona.lmao.ninja/v3/covid-19/countries/$pais');
 
-    if (response.data != 200) {
-      throw Exception('Ocorreu algum problema tente novamente.');
+    if (response.statusCode != 200) {
+      throw Exception('Ocorreu um problema. Tente novamente. ${response.statusCode}');
     } else {
       return Pais.fromJson(response.data);
     }

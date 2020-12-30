@@ -1,5 +1,6 @@
 import 'package:app_covid19/controllers/home_controller.dart';
 import 'package:app_covid19/views/tela_dados_mundo.dart';
+import 'package:app_covid19/views/tela_escolher_pais.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
@@ -14,7 +15,7 @@ class Home extends StatelessWidget {
         () => Scaffold(
             backgroundColor: Color.fromRGBO(58, 23, 99, 1.0),
             body: _homeController.currentIndex == 0 ? TelaDadosMundo()
-            : Center(child: Text('Pais'),),
+            : TelaEscolherPais(),
             bottomNavigationBar: BottomNavigationBar(
                   unselectedItemColor: Colors.grey,
                   selectedItemColor:  Colors.white,

@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 
-
 class CardTotalPaisesAfetados extends StatelessWidget {
-
   final HomeController _homeController = Get.find();
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,15 +29,14 @@ class CardTotalPaisesAfetados extends StatelessWidget {
             SizedBox(
               width: 30,
             ),
-            Obx(
-                  () {
-                   return _homeController.isLoading.value ?
-                       CircularProgressIndicator() :
-                    Text(
-                    _homeController.mundo.value.paisesAfetados.toString(),
-                    style: TextStyle(color: Colors.grey[350], fontSize: 30),
-                  );
-                })
+            Obx(() {
+              return _homeController.isLoading.value
+                  ? CircularProgressIndicator()
+                  : Text(
+                      _homeController.mundo.value.paisesAfetados.toString(),
+                      style: TextStyle(color: Colors.grey[350], fontSize: 30),
+                    );
+            })
           ],
         ),
       ),

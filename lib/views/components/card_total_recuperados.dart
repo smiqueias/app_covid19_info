@@ -28,16 +28,14 @@ class CardTotalRecuperados extends StatelessWidget {
             SizedBox(
               width: 30,
             ),
-            Obx(
-                  () {
-                  return _homeController.isLoading.value ?
-                  CircularProgressIndicator() :
-                  Text(
-                    _homeController.mundo.value.recuperados.toString(),
-                    style: TextStyle(color: Colors.grey[350], fontSize: 30),
-                  );
-                }
-            ),
+            Obx(() {
+              return _homeController.isLoading.value
+                  ? CircularProgressIndicator()
+                  : Text(
+                      _homeController.mundo.value.recuperados.toString(),
+                      style: TextStyle(color: Colors.grey[350], fontSize: 30),
+                    );
+            }),
           ],
         ),
       ),
