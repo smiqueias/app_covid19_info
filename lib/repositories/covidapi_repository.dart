@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:app_covid19/models/mundo_model.dart';
 import 'package:app_covid19/models/pais_model.dart';
 import 'package:dio/dio.dart';
@@ -16,7 +15,8 @@ class CovidRepository {
       throw Exception(
         'Ocorreu um problema. Tente novamente. ${response.statusCode}',
       );
-    } else {
+    }
+    else {
       return Mundo.fromJson(response.data);
     }
 
@@ -28,7 +28,9 @@ class CovidRepository {
 
     if (response.statusCode != 200) {
       throw Exception('Ocorreu um problema. Tente novamente. ${response.statusCode}');
-    } else {
+    }
+
+    else {
       return Pais.fromJson(response.data);
     }
 

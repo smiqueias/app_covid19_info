@@ -18,13 +18,11 @@ class HomeController extends GetxController {
 
   final pais = Pais().obs;
 
-  final currentIndex = 1.obs;
+  final currentIndex = 0.obs;
 
   final isLoading = true.obs;
 
   final nomePais = TextEditingController().obs;
-
-
 
   fetchWorldCases() async {
     mundo.value = await _covidRepository.getMundo();
@@ -35,7 +33,7 @@ class HomeController extends GetxController {
     currentIndex.value = index;
   }
 
-  fetchCountryCases({String nomePais = 'brazil'}) async {
+  fetchCountryCases({String nomePais}) async {
     pais.value = await _covidRepository.getPais(pais: nomePais);
     isLoading.value = false;
   }
