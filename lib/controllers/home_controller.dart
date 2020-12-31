@@ -18,7 +18,7 @@ class HomeController extends GetxController {
 
   final pais = Pais().obs;
 
-  final currentIndex = 0.obs;
+  final currentIndex = 1.obs;
 
   final isLoading = true.obs;
 
@@ -33,8 +33,7 @@ class HomeController extends GetxController {
     currentIndex.value = index;
   }
 
-  fetchCountryCases({String nomePais}) async {
-    pais.value = await _covidRepository.getPais(pais: nomePais);
-    isLoading.value = false;
+   fetchCountryCases({String nomePais}) async {
+    return pais.value = await _covidRepository.getPais(pais: nomePais);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:app_covid19/controllers/home_controller.dart';
+import 'package:app_covid19/models/pais_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,8 @@ import 'package:get/get.dart';
 class CardPaisInfectados extends StatelessWidget {
 
   final HomeController homeController;
+
+
 
   const CardPaisInfectados({this.homeController});
 

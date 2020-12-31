@@ -20,7 +20,6 @@ class TelaDadosPais extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    _homeController.fetchCountryCases(nomePais: nomePais);
 
     return Scaffold(
         backgroundColor: Color.fromRGBO(58, 23, 99, 1.0),
@@ -30,42 +29,70 @@ class TelaDadosPais extends StatelessWidget {
             'INFORMAÇÕES COVID-19',
           ),
         ),
-        body: Column(
-                children: [
+        body: FutureBuilder(
+                future: _homeController.fetchCountryCases(nomePais: nomePais),
+                builder: (context, snapshot) {
 
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50)),
-                      ),
-                      child: CabecalhoDadosPais()
-                    ),
-                  ),
+                  if(snapshot.connectionState == ConnectionState.done) {
 
-                  SizedBox(
-                    height: 15,
-                  ),
-
-
-                  Expanded(
-                    flex: 3,
-                    child: ListView(
+                    if(snapshot.hasError || snapshot.data == null) {
+                      return Center(
+                        child: Text(
+                          'País não encontrado ou não tem casos',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20
+                          ),
+                        )
+                      );
+                    }
+                    return Column(
                       children: [
-                        CardPaisInfectados(homeController: _homeController,),
-                        CardPaisCasosGraves(homeController: _homeController,),
-                        CardPaisRecuperados(homeController: _homeController,),
-                        CardPaisMortesHoje(homeController: _homeController,),
-                        CardPaisTotalMortes(homeController: _homeController,),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.deepPurple,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(50),
+                                    bottomRight: Radius.circular(50)),
+                              ),
+                              child: CabecalhoDadosPais()),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Expanded(
+                            flex: 3,
+                            child: ListView(
+                              children: [
+                                CardPaisInfectados(
+                                  homeController: _homeController,
+                                ),
+                                CardPaisCasosGraves(
+                                  homeController: _homeController,
+                                ),
+                                CardPaisRecuperados(
+                                  homeController: _homeController,
+                                ),
+                                CardPaisMortesHoje(
+                                  homeController: _homeController,
+                                ),
+                                CardPaisTotalMortes(
+                                  homeController: _homeController,
+                                ),
+                              ],
+                            ))
                       ],
-                    )
-                  )
-                ],
-              ),
+                    );
+                  }
+
+                  else {
+                    return Center(child: CircularProgressIndicator(),);
+                  }
+                },
+              )
         );
   }
 }
